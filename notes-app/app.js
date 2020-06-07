@@ -1,9 +1,9 @@
-const getNotes = require("./notes");
+const notes = require("./notes");
 const validator = require("validator");
 const chalk = require("chalk");
 const yargs = require("yargs");
 
-const notes = getNotes("notes.txt");
+const notesFile = notes.getNotes("notes.txt");
 
 /* console.log(chalk.blue.bold(notes + " " + process.argv[2]));
 console.log("Is this a valid email", validator.isEmail("foobar@emsc.com"));
@@ -31,8 +31,8 @@ yargs.command({
     },
   },
   handler: (argv) => {
-    console.log("Add a title:", argv.title);
-    console.log("Add a body:", argv.body);
+    console.log("running addNOtes");
+    notes.addNotes(argv.title, argv.body);
   },
 });
 
