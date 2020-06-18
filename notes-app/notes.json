@@ -1,1 +1,11 @@
-[{"title":"a","body":"b"},{"title":"Fantastic NodeJs","body":"I will be the best developer of the worls"},{"title":"Fantastic NodeJs2","body":"I will be the best developer of the worls"}]
+[
+  {
+    "title": "Fantastic NodeJs",
+    "body": "I will be the best developer of the worls"
+  },
+  {
+    "title": "Fantastic NodeJs2",
+    "body": "I will be the best developer of the worls"
+  },
+  { "title": "faiz is best", "body": "sweater is good" }
+]
