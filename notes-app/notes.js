@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const chalk = require("chalk");
 const getNotes = (file) => {
   const note = fs.readFileSync(file);
   return note;
@@ -31,9 +31,13 @@ const saveNotes = (notes) => {
 
 const removeNotes = (title) => {
   const notes = loadNotes();
-  const newNote = notes.filter((note) => note.title !== title);
-  saveNotes(newNote);
-  console.log(`note with the title ${title} is removed`);
+  if (notes.map((a) => a.title).includes(title)) {
+    const newNote = notes.filter((note) => note.title !== title);
+    saveNotes(newNote);
+    console.log(chalk.bgGreen.black(`note with the title ${title} is removed`));
+  } else {
+    console.log(chalk.bgRed.black(`Sorry no note with the title: ${title}`));
+  }
 };
 
 const loadNotes = () => {
