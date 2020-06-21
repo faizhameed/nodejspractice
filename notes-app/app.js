@@ -60,6 +60,7 @@ yargs.command({
 
   handler: () => {
     console.log("list the note");
+    notes.listNotes();
   },
 });
 yargs.command({
