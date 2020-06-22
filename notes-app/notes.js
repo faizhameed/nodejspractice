@@ -7,20 +7,18 @@ const getNotes = (file) => {
 
 const addNotes = (title, body) => {
   const notes = loadNotes();
-  let flag = true;
   // to avoid saving duplicate notes
-  notes.forEach((note) => {
-    if (note.title === title) {
-      flag = false;
-    }
-  });
-  if (flag) {
+  let dupNote = notes.find((note) => note.title === title);
+
+  if (dupNote === undefined) {
     notes.push({
       title,
       body,
     });
     saveNotes(notes);
     console.log("notes added");
+  } else {
+    console.log(chalk.red.inverse(`note title already Taken!!`));
   }
 };
 
@@ -43,8 +41,19 @@ const removeNotes = (title) => {
 const listNotes = () => {
   let notes = loadNotes();
   notes.forEach((note) =>
-    console.log(chalk.bgGreen.black.bold(`${note.title} : ${note.body} \n`))
+    console.log(chalk.bgGreen.black.bold(`${note.title} : ${note.body}`))
   );
+};
+
+const readNotes = (title) => {
+  let notes = loadNotes();
+  let targetNote = notes.find((note) => note.title === title);
+  if (targetNote !== undefined) {
+    console.log(chalk.blue.bgGray(`title: ${targetNote.title}`));
+    console.log(`body: ${targetNote.body}`);
+  } else {
+    console.log(`note not found`);
+  }
 };
 
 const loadNotes = () => {
@@ -62,4 +71,5 @@ module.exports = {
   addNotes,
   removeNotes,
   listNotes,
+  readNotes,
 };
