@@ -9,7 +9,7 @@ const addNotes = (title, body) => {
   const notes = loadNotes();
   // to avoid saving duplicate notes
   let dupNote = notes.find((note) => note.title === title);
-
+  debugger
   if (dupNote === undefined) {
     notes.push({
       title,
