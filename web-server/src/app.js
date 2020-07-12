@@ -4,17 +4,30 @@ const express = require("express");
 const app = express();
 
 // app.com
-const staticHtml = path.join(__dirname, "../public");
+const publicDirectoryPath = path.join(__dirname, "../public");
 
-app.use(express.static(staticHtml));
+app.use(express.static(publicDirectoryPath));
 app.set("view engine", "hbs");
 
-app.get("", (req, res) => {
-  res.render("index");
-});
+let commonData = {
+  title: "Weather App",
+  name: "Faiz Hameed",
+};
 
 app.get("", (req, res) => {
-  res.send("Hello Faiz");
+  res.render("index", commonData);
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", commonData);
+});
+
+app.get("/help", (req, res) => {
+  res.render("help", {
+    title: "This is the help page",
+    name: "Faiz Hameed",
+    designation: "Full stack Web Developer",
+  });
 });
 
 app.get("/weather", (req, res) => {
