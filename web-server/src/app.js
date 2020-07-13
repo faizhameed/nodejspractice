@@ -1,17 +1,20 @@
 const path = require("path");
 const express = require("express");
-
+const hbs = require("hbs");
 const app = express();
 
 // define paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
 
-const viewsPath = path.join(__dirname, "../templates");
+const viewsPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
 
 // Setup handlebars engine and views location
 app.use(express.static(publicDirectoryPath));
 app.set("views", viewsPath);
 app.set("view engine", "hbs");
+
+hbs.registerPartials(partialsPath);
 
 let commonData = {
   title: "Weather App",
@@ -42,6 +45,15 @@ app.get("/weather", (req, res) => {
     longitude: 24,
     latitude: 32,
   });
+});
+
+app.get("/help/*", (req, res) => {
+  res.send("help not found");
+});
+
+// this is the last
+app.get("*", (req, res) => {
+  res.send("My 404 page");
 });
 
 app.listen(3000, () => {

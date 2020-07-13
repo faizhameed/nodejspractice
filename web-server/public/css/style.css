@@ -3,3 +3,10 @@ body {
   background-color: #1d1d1d;
   color: #ddd;
 }
+a {
+  text-decoration: underline;
+  color: #ddd;
+}
+a:hover {
+  color: rgb(158, 158, 158);
+}
