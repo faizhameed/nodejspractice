@@ -53,7 +53,11 @@ app.get("/help/*", (req, res) => {
 
 // this is the last
 app.get("*", (req, res) => {
-  res.send("My 404 page");
+  res.render("404", {
+    title: "404",
+    name: "Faiz Hameed",
+    errorMessage: "Page not found",
+  });
 });
 
 app.listen(3000, () => {
