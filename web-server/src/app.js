@@ -17,18 +17,24 @@ app.set("view engine", "hbs");
 hbs.registerPartials(partialsPath);
 
 let commonData = {
-  title: "Weather App",
+  title: "Weather",
   name: "Faiz Hameed",
 };
 
 //setup static directory to serve
 
 app.get("", (req, res) => {
-  res.render("index", commonData);
+  res.render("index", {
+    title: "Weather",
+    name: "Faiz Hameed",
+  });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", commonData);
+  res.render("about", {
+    title: "About us",
+    name: "Faiz Hameed",
+  });
 });
 
 app.get("/help", (req, res) => {
@@ -40,8 +46,14 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
+  if (!req.query.address) {
+    return res.send({
+      error: "Please Provide an address",
+    });
+  }
+
   res.send({
-    location: "Dubai",
+    location: req.query.address,
     longitude: 24,
     latitude: 32,
   });
