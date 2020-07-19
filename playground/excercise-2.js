@@ -25,6 +25,12 @@ let arrObj = [
   { age: 32 },
   { age: 45 },
 ];
-let maxAge = arrObj.reduce((a, b) => Math.max(a.age, b.age), { age: 0 });
+let maxAge = arrObj.reduce(
+  (a, b) => {
+    if (a.age > b.age) return a;
+    return b;
+  },
+  { age: 0 }
+);
 
 console.log("maxage", maxAge);
