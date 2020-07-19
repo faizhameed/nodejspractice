@@ -5,7 +5,7 @@ const url =
 
 const request = http.request(url, (response) => {
   let data = "";
-  // we have to listen for individula chunks to come in
+  // we have to listen for individual chunks to come in
   response.on("data", (chunk) => {
     data += chunk.toString();
   });
