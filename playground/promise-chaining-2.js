@@ -11,3 +11,7 @@ Task.findByIdAndDelete("5f3fc2019240fac4316dbdba")
   })
   .then((result) => console.log(result))
   .catch((e) => console.log(e));
+
+Task.countDocuments({}).then((result) => {
+  console.log("Printing total count", result);
+});
